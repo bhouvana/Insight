@@ -1,0 +1,24 @@
+{
+  "name": "founder-mode-mcp-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Deterministic build-readiness scoring and session persistence for the Insight Claude Code plugin.",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.11.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "eslint": "^9.15.0",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.64.0",
+    "vitest": "^2.1.0"
+  }
+}

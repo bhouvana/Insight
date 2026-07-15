@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.log
+.claude/settings.local.json
+.dev-data/
+.claude/scheduled_tasks.lock
+.DS_Store

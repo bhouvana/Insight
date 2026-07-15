@@ -1,0 +1,11 @@
+{
+  "name": "insight",
+  "description": "An AI advisory board that challenges, researches, and scores your idea before Claude Code starts building it.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Insight Maintainers",
+    "email": "bhouvana@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": ["founder", "product-strategy", "advisory-board", "personas", "build-readiness", "research"]
+}

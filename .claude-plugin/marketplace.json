@@ -1,0 +1,16 @@
+{
+  "name": "insight-marketplace",
+  "owner": {
+    "name": "Insight Maintainers",
+    "email": "bhouvana@gmail.com"
+  },
+  "description": "Self-hosted marketplace for the Insight plugin — an AI advisory board that challenges, researches, and scores an idea before Claude Code starts building it.",
+  "plugins": [
+    {
+      "name": "insight",
+      "source": "./plugins/founder-mode",
+      "description": "An AI advisory board of 15 personas plus research, creative, and build-readiness-scoring engines that runs before implementation begins.",
+      "version": "0.1.0"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh --version)",
+      "Bash(gh api *)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:docs.claude.com)",
+      "Bash(cd \"c:/Python/Claudecode-plugin\" && mkdir -p .claude-plugin .claude/agents .claude/skills .claude/commands plugins/founder-mode/.claude-plugin plugins/founder-mode/agents plugins/founder-mode/skills plugins/founder-mode/servers/founder-mode-mcp-server/src plugins/founder-mode/servers/founder-mode-mcp-server/tests && find . -type d | sort)",
+      "Edit(/.claude/skills/idea-evolution/**)",
+      "Edit(/.claude/skills/founder-mode/**)",
+      "Bash(command -v rsync)",
+      "Bash(rsync -a --delete .claude/agents/ plugins/founder-mode/agents/)",
+      "Bash(rsync -a --delete .claude/skills/ plugins/founder-mode/skills/)",
+      "Bash(rm -rf plugins/founder-mode/agents plugins/founder-mode/skills)",
+      "Bash(mkdir -p plugins/founder-mode/agents plugins/founder-mode/skills)",
+      "Bash(claude plugin *)",
+      "mcp__founder-mode-mcp-server__list_sessions",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(mkdir -p \"c:/Python/Claudecode-plugin/.claude/hooks\")",
+      "Bash(bash .claude/hooks/check-sync.sh)",
+      "Bash(echo \"tmp change\")",
+      "Bash(git checkout *)",
+      "Bash(sed -i '$ d' .claude/agents/founder.md)",
+      "Bash(node -e ' *)",
+      "Bash(git commit *)",
+      "Bash(echo \"ran git commit --help, exit $?\")",
+      "Bash(git --version)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(rm -f /tmp/claude-hook-check.txt && echo \"sentinel cleaned up\")",
+      "Bash(git init *)"
+    ],
+    "additionalDirectories": [
+      "c:\\Python\\Claudecode-plugin\\.claude",
+      "\\tmp"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/check-sync.sh",
+            "if": "Bash(git commit*)",
+            "statusMessage": "Checking plugins/founder-mode mirror is in sync..."
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "insight@insight-marketplace": true
+  }
+}

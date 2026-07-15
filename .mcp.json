@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "founder-mode-mcp-server": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["./plugins/founder-mode/servers/founder-mode-mcp-server/dist/index.js"],
+      "env": {
+        "CLAUDE_PLUGIN_DATA": "${PWD}/.dev-data"
+      }
+    }
+  }
+}

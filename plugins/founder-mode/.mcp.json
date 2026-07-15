@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "founder-mode-mcp-server": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/servers/founder-mode-mcp-server/dist/index.js"]
+    }
+  }
+}

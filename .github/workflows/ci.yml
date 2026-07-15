@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  mcp-server:
+    name: MCP server (typecheck, lint, test)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: plugins/founder-mode/servers/founder-mode-mcp-server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npx eslint .
+      - run: npx vitest run
+
+  sync-check:
+    name: agents/skills mirror is in sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Diff .claude/{agents,skills} against plugins/founder-mode/{agents,skills}
+        run: |
+          diff -rq .claude/agents plugins/founder-mode/agents
+          diff -rq .claude/skills plugins/founder-mode/skills
+          echo "Mirror is in sync."
