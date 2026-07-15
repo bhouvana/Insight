@@ -6,15 +6,15 @@ An AI advisory board for Claude Code. Before Claude Code starts building your id
 challenges it: 15 independent expert personas, a research engine, a creative-pivot
 engine, and a deterministic build-readiness score — then hands off to implementation.
 
-> **Status: functional (M1–M6).** Core board, extended board, research/creative
-> engines, and the deterministic scoring server are all implemented and exercised
-> live (see Example sessions below). Not yet published to a marketplace — see
-> `IMPLEMENTATION_PLAN.md` M7.
+> **Status: functional (M1–M6), published (M7).** Core board, extended board,
+> research/creative engines, the deterministic scoring server, and the Idea
+> Evolution Engine (M9) are all implemented and exercised live (see Example
+> sessions below).
 
 ## Install
 
 ```
-/plugin marketplace add <owner>/<repo>
+/plugin marketplace add bhouvana/Insight
 /plugin install insight@insight-marketplace
 ```
 
@@ -66,6 +66,19 @@ See `PROJECT_SPEC.md` for the full engine design and architecture, and
 |---|---|
 | `research-analyst` | Every board session, in parallel — competitor/market/sentiment synthesis, never a raw search dump |
 | `lateral-thinker` | Reactively, only when `devils-advocate` names a real dead end (not speculatively) |
+| `idea-incubator` | Only via the standalone `idea-evolution` skill, opt-in after a Pivot/Pause score — never dispatched by `founder-mode` itself |
+
+### Idea Evolution Engine
+
+Given a Pivot/Pause session, `idea-evolution` proposes one concrete revision
+targeting the board's own stated weaknesses, then re-judges it with the *same
+unmodified board* — only re-dispatching the personas whose dimensions the revision
+actually touches (plus `devils-advocate`, unconditionally, every iteration). The
+board's calibration never loosens for a re-run: in a real test, the board found a
+genuinely new flaw in the "improved" idea rather than rubber-stamping it. Opt-in
+only (mentioned once by `founder-mode` on a Pivot/Pause result, never forced),
+checkpointed after every iteration. See
+`.claude/skills/idea-evolution/protocol.md` for the full loop.
 
 ## MCP server
 
