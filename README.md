@@ -33,6 +33,21 @@ mode toggle") skips the board and goes straight to implementation.
 See `PROJECT_SPEC.md` for the full engine design and architecture, and
 `.claude/skills/founder-mode/protocol.md` for the exact orchestration steps.
 
+## Skills
+
+Five skills, installed under the `insight` namespace. Only `founder-mode` triggers
+automatically on trigger phrases like "I want to build X" — the rest are standalone,
+user- or Claude-invocable, and never duplicate reasoning that belongs in their
+underlying agent (see `ENGINEERING_PRINCIPLES.md` §2.3).
+
+| Skill | What it does |
+|---|---|
+| `/insight:founder-mode` | Convenes the board (personas, research, scoring) to challenge an idea before implementation begins. Auto-triggers on "I want to build X" and similar — the only skill here that's Claude-invocable by default |
+| `/insight:research-engine` | Gathers and synthesizes competitor, market, and sentiment research for an idea via web search — never a raw search-result dump |
+| `/insight:creative-brainstorm` | Generates lateral pivots, cross-domain analogues, and business-model variants when an idea is cornered or underdeveloped |
+| `/insight:build-readiness-score` | Computes and renders the 10-dimension Build Readiness Score with a Go/Pivot/Pause call, via the real MCP server — never an LLM-guessed number |
+| `/insight:idea-evolution` | Refines a low-scoring idea against the board's own stated weaknesses, then re-judges it with the same unmodified board |
+
 ## Persona roster
 
 **Core board** (always dispatched when a board is convened):
